@@ -257,7 +257,7 @@ const RecipeDetail = () => {
     <div className="bg-gray-50 min-h-screen">
       <div className="relative h-[300px] md:h-[400px] bg-gray-900">
         <img
-          src={`https://cooktogether.onrender.com/${image}`}
+          src={image}
           alt="Recipe"
           className="absolute inset-0 w-full h-full object-cover opacity-80"
         />
@@ -270,7 +270,7 @@ const RecipeDetail = () => {
             <p className="text-white text-lg opacity-90 mb-4">{description}</p>
             <div className="flex items-center">
               <img
-                src={`https://cooktogether.onrender.com/${author.profilePic}`}
+                src={author.profilePic}
                 alt={author.name}
                 className="w-10 h-10 rounded-full border-2 border-white"
               />
@@ -551,7 +551,7 @@ const RecipeDetail = () => {
               <div className="flex items-start space-x-4 mb-6">
                 {loggedUser.profilePic ? (
                   <img
-                    src={`https://cooktogether.onrender.com/${loggedUser.profilePic}`}
+                    src={loggedUser.profilePic}
                     alt={name}
                     className="h-8 w-8 rounded-full object-cover border-2 border-red-600"
                   />
@@ -586,7 +586,7 @@ const RecipeDetail = () => {
                   <div key={comment._id} className="flex items-start space-x-4">
                     {comment.user.profilePic ? (
                       <img
-                        src={`https://cooktogether.onrender.com/${comment.user.profilePic}`}
+                        src={comment.user.profilePic}
                         alt={comment.user.profilePic}
                         className="h-8 w-8 rounded-full object-cover border-2 border-red-600"
                       />

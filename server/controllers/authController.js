@@ -49,6 +49,7 @@ exports.login = async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: "None",
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
 
     res.status(200).json({
@@ -68,11 +69,6 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.logout = (req, res) => {
-  res.clearCookie("jwt");
-  res.json({ message: "Logged out successfully" });
-};
-
 exports.verifyToken = async (req, res) => {
   const token = req.cookies.jwt;
   if (!token) return res.status(401).json({ msg: "No token, unauthorized" });
@@ -85,6 +81,15 @@ exports.verifyToken = async (req, res) => {
   } catch (err) {
     return res.status(401).json({ msg: "Invalid token" });
   }
+};
+
+exports.logout = (req, res) => {
+  res.clearCookie("jwt", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+  });
+  res.json({ message: "Logged out successfully" });
 };
 
 exports.forgotPassword = async (req, res) => {

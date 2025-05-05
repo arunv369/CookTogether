@@ -68,7 +68,7 @@ const UserList = () => {
           >
             {user.profilePic ? (
               <img
-                src={`https://cooktogether.onrender.com/${user.profilePic}`}
+                src={user.profilePic}
                 alt={user.name}
                 className="h-8 w-8 rounded-full object-cover border-2 border-red-600"
               />

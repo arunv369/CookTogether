@@ -26,19 +26,8 @@ const storage = new CloudinaryStorage({
     allowed_formats: ["jpg", "jpeg", "png"],
   },
 });
-// const fs = require("fs");
-// const path = require("path");
 
 const router = express.Router();
-
-// const userimageDir = path.join(__dirname, "..", "userimage");
-// if (!fs.existsSync(userimageDir)) {
-//   fs.mkdirSync(userimageDir);
-// }
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => cb(null, "userimage/"),
-//   filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
-// });
 
 const upload = multer({ storage });
 

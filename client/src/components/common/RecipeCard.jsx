@@ -160,7 +160,7 @@ const RecipeCard = ({ recipe, showActions = false, onDelete }) => {
         <Link to={`/recipe/${id}`}>
           <div className="relative h-48 overflow-hidden">
             <img
-              src={`https://cooktogether.onrender.com/${image}`}
+              src={image}
               alt="Recipe"
               className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
             />
@@ -176,7 +176,7 @@ const RecipeCard = ({ recipe, showActions = false, onDelete }) => {
         <div className="p-4">
           <div className="flex items-center mb-2">
             <img
-              src={`https://cooktogether.onrender.com/${author?.profilePic}`}
+              src={author?.profilePic}
               alt="User"
               className="w-6 h-6 rounded-full mr-2 object-cover"
             />

@@ -678,7 +678,7 @@ const MealPlanningPage = () => {
                     className="flex items-center p-4 border rounded-lg hover:bg-gray-50"
                   >
                     <img
-                      src={`https://cooktogether.onrender.com/${recipe.image}`}
+                      src={recipe.image}
                       alt="Recipe"
                       className="w-16 h-16 object-cover rounded"
                     />

@@ -15,6 +15,9 @@ const path = require("path");
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/userimage", express.static(path.join(__dirname, "userimage")));
 
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
 app.use(
   cors({
     origin: "https://cooktogether-b20.netlify.app",
@@ -25,9 +28,6 @@ app.use(
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 app.use("/userimage", express.static("userimage"));
-
-const cookieParser = require("cookie-parser");
-app.use(cookieParser());
 
 app.use("/auth", authRoutes);
 app.use("/recipes", recipeRoutes);

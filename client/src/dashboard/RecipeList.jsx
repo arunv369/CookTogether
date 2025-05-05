@@ -49,7 +49,7 @@ const RecipeList = () => {
           >
             <div>
               <img
-                src={`https://cooktogether.onrender.com/${recipe.image}`}
+                src={recipe.image}
                 alt={recipe.title}
                 className="w-full h-40 object-cover mb-2 rounded"
               />

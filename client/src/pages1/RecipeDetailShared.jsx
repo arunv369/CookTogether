@@ -53,10 +53,7 @@ const RecipeDetailShared = () => {
 
       {recipe.image && (
         <img
-          src={`https://cooktogether.onrender.com/${recipe.image.replace(
-            /\\/g,
-            "/"
-          )}`}
+          src={recipe.image.replace(/\\/g, "/")}
           alt={recipe.title}
           className="w-full h-96 object-cover rounded-lg mb-6"
         />
