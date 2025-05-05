@@ -16,19 +16,30 @@ const {
 const { protect, authenticateUser } = require("../middleware/authMiddleware");
 
 const multer = require("multer");
-const fs = require("fs");
-const path = require("path");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("../config/cloudinary");
+
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "user-profiles", // Cloudinary folder
+    allowed_formats: ["jpg", "jpeg", "png"],
+  },
+});
+// const fs = require("fs");
+// const path = require("path");
 
 const router = express.Router();
 
-const userimageDir = path.join(__dirname, "..", "userimage");
-if (!fs.existsSync(userimageDir)) {
-  fs.mkdirSync(userimageDir);
-}
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "userimage/"),
-  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
-});
+// const userimageDir = path.join(__dirname, "..", "userimage");
+// if (!fs.existsSync(userimageDir)) {
+//   fs.mkdirSync(userimageDir);
+// }
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => cb(null, "userimage/"),
+//   filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
+// });
+
 const upload = multer({ storage });
 
 router.get("/:id", getUserProfile);

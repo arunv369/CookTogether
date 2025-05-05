@@ -146,7 +146,6 @@ const RecipeCard = ({ recipe, showActions = false, onDelete }) => {
           savedRecipe: user.savedRecipe.filter((rid) => rid !== id),
         };
       }
-
       localStorage.setItem("user", JSON.stringify(updatedUser));
     } catch (err) {
       console.error(err);

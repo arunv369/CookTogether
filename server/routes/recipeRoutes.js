@@ -17,17 +17,27 @@ const {
 } = require("../controllers/recipeController");
 
 const multer = require("multer");
-const fs = require("fs");
-const path = require("path");
-
-const uploadsDir = path.join(__dirname, "..", "uploads");
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir);
-}
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("../config/cloudinary");
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "recipes", // Cloudinary folder
+    allowed_formats: ["jpg", "jpeg", "png"],
+  },
 });
+
+// const fs = require("fs");
+// const path = require("path");
+
+// const uploadsDir = path.join(__dirname, "..", "uploads");
+// if (!fs.existsSync(uploadsDir)) {
+//   fs.mkdirSync(uploadsDir);
+// }
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => cb(null, "uploads/"),
+//   filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
+// });
 
 const {
   protect,

@@ -31,8 +31,11 @@ const DiscoverPage = () => {
         };
         console.log("params:", params);
 
-        const response = await axios.get("/recipes/search", { params });
-        setFilteredRecipes(response.data); // Set state from server response
+        const response = await axios.get(
+          "https://cooktogether.onrender.com/recipes/search",
+          { params }
+        );
+        setFilteredRecipes(response.data);
       } catch (err) {
         console.error("Failed to fetch recipes:", err);
       }
