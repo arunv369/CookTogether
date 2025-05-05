@@ -49,7 +49,8 @@ exports.login = async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: "None",
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
+      maxAge: 24 * 60 * 60 * 1000,
+      path: "/",
     });
 
     res.status(200).json({
@@ -88,7 +89,9 @@ exports.logout = (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite: "None",
+    path: "/",
   });
+
   res.json({ message: "Logged out successfully" });
 };
 

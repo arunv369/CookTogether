@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
+const path = require("path");
 
 const authRoutes = require("./routes/authRoutes");
 const recipeRoutes = require("./routes/recipeRoutes");
@@ -11,11 +13,11 @@ const mealPlanRoutes = require("./routes/mealPlanRoutes");
 dotenv.config();
 const app = express();
 
-const path = require("path");
+app.set("trust proxy", 1);
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/userimage", express.static(path.join(__dirname, "userimage")));
 
-const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
 app.use(
@@ -26,8 +28,6 @@ app.use(
 );
 
 app.use(express.json());
-app.use("/uploads", express.static("uploads"));
-app.use("/userimage", express.static("userimage"));
 
 app.use("/auth", authRoutes);
 app.use("/recipes", recipeRoutes);
