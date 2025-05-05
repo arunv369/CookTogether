@@ -12,7 +12,8 @@ const RecipeDetailShared = () => {
     const fetchSharedRecipe = async () => {
       try {
         const { data } = await axios.get(
-          `https://cooktogether.onrender.com/recipes/shared/${shareId}`
+          `https://cooktogether.onrender.com/recipes/shared/${shareId}`,
+          { withCredentials: true }
         );
         setRecipe(data);
       } catch (error) {

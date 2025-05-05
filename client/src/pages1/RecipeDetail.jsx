@@ -59,7 +59,8 @@ const RecipeDetail = () => {
     const fetchRecipe = async () => {
       try {
         const res = await axios.get(
-          `hhttps://cooktogether.onrender.com/recipes/${recipeId}`
+          `hhttps://cooktogether.onrender.com/recipes/${recipeId}`,
+          { withCredentials: true }
         );
         setComments(res.data.comments || []);
       } catch (err) {
@@ -73,7 +74,8 @@ const RecipeDetail = () => {
     const fetchRecipeDetails = async () => {
       try {
         const res = await axios.get(
-          `https://cooktogether.onrender.com/recipes/${id}`
+          `https://cooktogether.onrender.com/recipes/${id}`,
+          { withCredentials: true }
         );
         const recipeData = res.data;
 

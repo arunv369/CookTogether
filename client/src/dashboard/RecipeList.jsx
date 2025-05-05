@@ -10,7 +10,9 @@ const RecipeList = () => {
 
   useEffect(() => {
     const fetchRecipes = async () => {
-      const res = await axios.get("https://cooktogether.onrender.com/recipes");
+      const res = await axios.get("https://cooktogether.onrender.com/recipes", {
+        withCredentials: true,
+      });
       setRecipes(res.data);
       console.log(res.data);
     };

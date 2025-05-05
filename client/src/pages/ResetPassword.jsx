@@ -16,7 +16,8 @@ function ResetPassword() {
         `https://cooktogether.onrender.com/auth/reset-password/${token}`,
         {
           password,
-        }
+        },
+        { withCredentials: true }
       );
       toast.success("Password reset successful. You can now login.");
       setPassword("");

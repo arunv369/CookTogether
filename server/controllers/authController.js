@@ -45,7 +45,11 @@ exports.login = async (req, res) => {
     if (!isMatch) return res.status(400).json({ msg: "Invalid password  " });
 
     const token = createToken(user._id);
-    res.cookie("jwt", token, { httpOnly: true, secure: false });
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    });
 
     res.status(200).json({
       message: "Login successful",

@@ -72,7 +72,8 @@ const MealPlanningPage = () => {
             "https://cooktogether.onrender.com/recipes/bulk",
             {
               params: { ids: recipeIds.join(",") },
-            }
+            },
+            { withCredentials: true }
           );
 
           const recipesMap = {};

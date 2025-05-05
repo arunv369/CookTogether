@@ -9,7 +9,8 @@ const CommunityPage = () => {
     try {
       const fetchuserdata = async () => {
         const response = await axios.get(
-          "https://cooktogether.onrender.com/users"
+          "https://cooktogether.onrender.com/users",
+          { withCredentials: true }
         );
         setUserData(response.data);
       };

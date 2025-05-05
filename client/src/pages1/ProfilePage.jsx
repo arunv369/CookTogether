@@ -44,7 +44,8 @@ const ProfilePage = () => {
     const fetchUserProfile = async () => {
       try {
         const res = await axios.get(
-          `https://cooktogether.onrender.com/users/${id}`
+          `https://cooktogether.onrender.com/users/${id}`,
+          { withCredentials: true }
         );
         setUser(res.data);
       } catch (err) {
@@ -76,7 +77,8 @@ const ProfilePage = () => {
     const fetchUserRecipes = async () => {
       try {
         const res = await axios.get(
-          `https://cooktogether.onrender.com/recipes/user/${id}`
+          `https://cooktogether.onrender.com/recipes/user/${id}`,
+          { withCredentials: true }
         );
         setUserRecipes(res.data);
       } catch (err) {
@@ -92,7 +94,8 @@ const ProfilePage = () => {
     try {
       const res = await axios.put(
         `https://cooktogether.onrender.com/users/${id}`,
-        updatedUserData
+        updatedUserData,
+        { withCredentials: true }
       );
       setUser(res.data);
 

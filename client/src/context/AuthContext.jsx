@@ -55,7 +55,8 @@ export const AuthProvider = ({ children }) => {
     const fetchRecipes = async () => {
       try {
         const res = await axios.get(
-          "https://cooktogether.onrender.com/recipes"
+          "https://cooktogether.onrender.com/recipes",
+          { withCredentials: true }
         );
         setRecipes(res.data);
         console.log(res.data);
