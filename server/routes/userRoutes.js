@@ -1,0 +1,49 @@
+// routes/userRoutes.js
+const express = require("express");
+const {
+  followUser,
+  unfollowUser,
+  addFavorite,
+  removeFavorite,
+  getUserStats,
+  getUserProfile,
+  updateUserProfile,
+  saveRecipe,
+  unsaveRecipe,
+  getUsers,
+  deleteUser,
+} = require("../controllers/userController");
+const { protect, authenticateUser } = require("../middleware/authMiddleware");
+
+const multer = require("multer");
+const fs = require("fs");
+const path = require("path");
+
+const router = express.Router();
+
+const userimageDir = path.join(__dirname, "..", "userimage");
+if (!fs.existsSync(userimageDir)) {
+  fs.mkdirSync(userimageDir);
+}
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, "userimage/"),
+  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
+});
+const upload = multer({ storage });
+
+router.get("/:id", getUserProfile);
+router.get("/", getUsers);
+
+router.put("/:id", upload.single("profilePic"), updateUserProfile);
+router.put("/follow/:id", authenticateUser, followUser);
+router.put("/unfollow/:id", authenticateUser, unfollowUser);
+
+router.get("/stats/:id", protect, getUserStats);
+
+router.post("/:id/save", saveRecipe);
+
+router.post("/:id/unsave", unsaveRecipe);
+
+router.delete("/:id", protect, deleteUser);
+
+module.exports = router;
