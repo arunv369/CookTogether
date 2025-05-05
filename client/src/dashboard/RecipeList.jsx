@@ -10,7 +10,7 @@ const RecipeList = () => {
 
   useEffect(() => {
     const fetchRecipes = async () => {
-      const res = await axios.get("http://localhost:5001/recipes");
+      const res = await axios.get("https://cooktogether.onrender.com/recipes");
       setRecipes(res.data);
       console.log(res.data);
     };
@@ -20,7 +20,7 @@ const RecipeList = () => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5001/recipes/${id}`,
+        `https://cooktogether.onrender.com/recipes/${id}`,
         {
           withCredentials: true,
         }
@@ -47,7 +47,7 @@ const RecipeList = () => {
           >
             <div>
               <img
-                src={`http://localhost:5001/${recipe.image}`}
+                src={`https://cooktogether.onrender.com/${recipe.image}`}
                 alt={recipe.title}
                 className="w-full h-40 object-cover mb-2 rounded"
               />

@@ -93,16 +93,24 @@ const CreateRecipeForm = () => {
 
     try {
       if (id) {
-        await axios.put(`http://localhost:5001/recipes/${id}`, data, {
-          headers: { "Content-Type": "multipart/form-data" },
-          withCredentials: true,
-        });
+        await axios.put(
+          `https://cooktogether.onrender.com/recipes/${id}`,
+          data,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+            withCredentials: true,
+          }
+        );
         toast.success("Recipe updated successfully!");
       } else {
-        await axios.post("http://localhost:5001/recipes/createRecipe", data, {
-          headers: { "Content-Type": "multipart/form-data" },
-          withCredentials: true,
-        });
+        await axios.post(
+          "https://cooktogether.onrender.com/recipes/createRecipe",
+          data,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+            withCredentials: true,
+          }
+        );
         console.log("data:", data);
         toast.success("Recipe created successfully!");
       }

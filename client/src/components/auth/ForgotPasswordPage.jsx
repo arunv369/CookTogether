@@ -14,7 +14,10 @@ const ForgotPasswordPage = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5001/auth/forgot-password", { email });
+      await axios.post(
+        "https://cooktogether.onrender.com/auth/forgot-password",
+        { email }
+      );
       setIsSubmitted(true);
       toast.success("Password reset link sent to your email");
       setEmail("");

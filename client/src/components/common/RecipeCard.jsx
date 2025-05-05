@@ -44,7 +44,7 @@ const RecipeCard = ({ recipe, showActions = false, onDelete }) => {
   const confirmDelete = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:5001/recipes/${id}`,
+        `https://cooktogether.onrender.com/recipes/${id}`,
         {
           withCredentials: true,
         }
@@ -85,13 +85,21 @@ const RecipeCard = ({ recipe, showActions = false, onDelete }) => {
 
     try {
       if (!previousIsLiked) {
-        await axios.post(`http://localhost:5001/recipes/${id}/like`, data, {
-          withCredentials: true,
-        });
+        await axios.post(
+          `https://cooktogether.onrender.com/recipes/${id}/like`,
+          data,
+          {
+            withCredentials: true,
+          }
+        );
       } else {
-        await axios.post(`http://localhost:5001/recipes/${id}/unlike`, data, {
-          withCredentials: true,
-        });
+        await axios.post(
+          `https://cooktogether.onrender.com/recipes/${id}/unlike`,
+          data,
+          {
+            withCredentials: true,
+          }
+        );
       }
     } catch (err) {
       console.error(err);
@@ -114,17 +122,25 @@ const RecipeCard = ({ recipe, showActions = false, onDelete }) => {
     try {
       let updatedUser;
       if (!previousIsSaved) {
-        await axios.post(`http://localhost:5001/users/${id}/save`, data, {
-          withCredentials: true,
-        });
+        await axios.post(
+          `https://cooktogether.onrender.com/users/${id}/save`,
+          data,
+          {
+            withCredentials: true,
+          }
+        );
         updatedUser = {
           ...user,
           savedRecipe: [...user.savedRecipe, id],
         };
       } else {
-        await axios.post(`http://localhost:5001/users/${id}/unsave`, data, {
-          withCredentials: true,
-        });
+        await axios.post(
+          `https://cooktogether.onrender.com/users/${id}/unsave`,
+          data,
+          {
+            withCredentials: true,
+          }
+        );
         updatedUser = {
           ...user,
           savedRecipe: user.savedRecipe.filter((rid) => rid !== id),
@@ -145,7 +161,7 @@ const RecipeCard = ({ recipe, showActions = false, onDelete }) => {
         <Link to={`/recipe/${id}`}>
           <div className="relative h-48 overflow-hidden">
             <img
-              src={`http://localhost:5001/${image}`}
+              src={`https://cooktogether.onrender.com/${image}`}
               alt="Recipe"
               className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
             />
@@ -161,7 +177,7 @@ const RecipeCard = ({ recipe, showActions = false, onDelete }) => {
         <div className="p-4">
           <div className="flex items-center mb-2">
             <img
-              src={`http://localhost:5001/${author?.profilePic}`}
+              src={`https://cooktogether.onrender.com/${author?.profilePic}`}
               alt="User"
               className="w-6 h-6 rounded-full mr-2 object-cover"
             />

@@ -43,7 +43,9 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const res = await axios.get(`http://localhost:5001/users/${id}`);
+        const res = await axios.get(
+          `https://cooktogether.onrender.com/users/${id}`
+        );
         setUser(res.data);
       } catch (err) {
         console.error("Error fetching user profile:", err);
@@ -57,9 +59,13 @@ const ProfilePage = () => {
     const { id } = recipe;
     const data = { userId: currentId };
     try {
-      await axios.post(`http://localhost:5001/users/${id}/unsave`, data, {
-        withCredentials: true,
-      });
+      await axios.post(
+        `https://cooktogether.onrender.com/users/${id}/unsave`,
+        data,
+        {
+          withCredentials: true,
+        }
+      );
     } catch (err) {
       console.log(err);
     }
@@ -69,7 +75,9 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchUserRecipes = async () => {
       try {
-        const res = await axios.get(`http://localhost:5001/recipes/user/${id}`);
+        const res = await axios.get(
+          `https://cooktogether.onrender.com/recipes/user/${id}`
+        );
         setUserRecipes(res.data);
       } catch (err) {
         console.error("Error fetching user recipes:", err);
@@ -83,7 +91,7 @@ const ProfilePage = () => {
   const handleEditProfile = async (updatedUserData) => {
     try {
       const res = await axios.put(
-        `http://localhost:5001/users/${id}`,
+        `https://cooktogether.onrender.com/users/${id}`,
         updatedUserData
       );
       setUser(res.data);
@@ -112,14 +120,9 @@ const ProfilePage = () => {
             <div className="sm:flex sm:items-center sm:justify-between">
               <div className="sm:flex sm:space-x-5">
                 <div className="flex-shrink-0">
-                  {/* <img
-                    className="mx-auto h-24 w-24 rounded-full border-4 border-white object-cover"
-                    src={`http://localhost:5001/${user.profilePic}`}
-                    alt="user"
-                  /> */}
                   {user.profilePic ? (
                     <img
-                      src={`http://localhost:5001/${user.profilePic}`}
+                      src={`https://cooktogether.onrender.com/${user.profilePic}`}
                       alt={user.name}
                       className="h-8 w-8 rounded-full object-cover border-2 border-red-600"
                     />

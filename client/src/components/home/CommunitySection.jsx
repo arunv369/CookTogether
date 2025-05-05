@@ -9,7 +9,9 @@ const CommunitySection = () => {
   useEffect(() => {
     try {
       const fetchuserdata = async () => {
-        const response = await axios.get("http://localhost:5001/users");
+        const response = await axios.get(
+          "https://cooktogether.onrender.com/users"
+        );
         setUserData(response.data);
       };
       fetchuserdata();

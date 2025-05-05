@@ -12,7 +12,7 @@ const RecipeDetailShared = () => {
     const fetchSharedRecipe = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5001/recipes/shared/${shareId}`
+          `https://cooktogether.onrender.com/recipes/shared/${shareId}`
         );
         setRecipe(data);
       } catch (error) {
@@ -52,7 +52,10 @@ const RecipeDetailShared = () => {
 
       {recipe.image && (
         <img
-          src={`http://localhost:5001/${recipe.image.replace(/\\/g, "/")}`}
+          src={`https://cooktogether.onrender.com/${recipe.image.replace(
+            /\\/g,
+            "/"
+          )}`}
           alt={recipe.title}
           className="w-full h-96 object-cover rounded-lg mb-6"
         />

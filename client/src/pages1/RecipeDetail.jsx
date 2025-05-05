@@ -59,7 +59,7 @@ const RecipeDetail = () => {
     const fetchRecipe = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5001/recipes/${recipeId}`
+          `hhttps://cooktogether.onrender.com/recipes/${recipeId}`
         );
         setComments(res.data.comments || []);
       } catch (err) {
@@ -72,7 +72,9 @@ const RecipeDetail = () => {
   useEffect(() => {
     const fetchRecipeDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:5001/recipes/${id}`);
+        const res = await axios.get(
+          `https://cooktogether.onrender.com/recipes/${id}`
+        );
         const recipeData = res.data;
 
         setComments(recipeData.comments || []);
@@ -140,14 +142,13 @@ const RecipeDetail = () => {
       const data = { text: commentText, userId };
 
       const response = await axios.post(
-        `http://localhost:5001/recipes/${id}/comment`,
+        `https://cooktogether.onrender.com/recipes/${id}/comment`,
         data,
         { withCredentials: true }
       );
 
-      // Update comments list with the latest from backend
       setComments(response.data.comments);
-      setCommentText(""); // clear the textarea after posting
+      setCommentText("");
     } catch (err) {
       console.error("Error posting comment:", err);
     }
@@ -182,7 +183,7 @@ const RecipeDetail = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `http://localhost:5001/recipes/${id}/rate`,
+        `https://cooktogether.onrender.com/recipes/${id}/rate`,
         { rating },
         {
           headers: {
@@ -227,12 +228,12 @@ const RecipeDetail = () => {
   const shareRecipe = async () => {
     try {
       const { data } = await axios.post(
-        `http://localhost:5001/recipes/share/${id}`,
+        `https://cooktogether.onrender.com/recipes/share/${id}`,
         {},
         { withCredentials: true }
       );
 
-      const shareUrl1 = `http://localhost:5173/detailshared/${data.shareId}`;
+      const shareUrl1 = `https://cooktogether-b20.netlify.app/detailshared/${data.shareId}`;
       setShareUrl(shareUrl1);
       setShowShareModal(true);
     } catch (err) {
@@ -254,7 +255,7 @@ const RecipeDetail = () => {
     <div className="bg-gray-50 min-h-screen">
       <div className="relative h-[300px] md:h-[400px] bg-gray-900">
         <img
-          src={`http://localhost:5001/${image}`}
+          src={`https://cooktogether.onrender.com/${image}`}
           alt="Recipe"
           className="absolute inset-0 w-full h-full object-cover opacity-80"
         />
@@ -267,7 +268,7 @@ const RecipeDetail = () => {
             <p className="text-white text-lg opacity-90 mb-4">{description}</p>
             <div className="flex items-center">
               <img
-                src={`http://localhost:5001/${author.profilePic}`}
+                src={`https://cooktogether.onrender.com/${author.profilePic}`}
                 alt={author.name}
                 className="w-10 h-10 rounded-full border-2 border-white"
               />
@@ -548,7 +549,7 @@ const RecipeDetail = () => {
               <div className="flex items-start space-x-4 mb-6">
                 {loggedUser.profilePic ? (
                   <img
-                    src={`http://localhost:5001/${loggedUser.profilePic}`}
+                    src={`https://cooktogether.onrender.com/${loggedUser.profilePic}`}
                     alt={name}
                     className="h-8 w-8 rounded-full object-cover border-2 border-red-600"
                   />
@@ -557,11 +558,7 @@ const RecipeDetail = () => {
                     <User className="h-5 w-5 text-gray-500" />
                   </div>
                 )}
-                {/* <img
-                  src={`http://localhost:5001/${loggedUser.profilePic}`}
-                  alt={loggedUser.name}
-                  className="w-10 h-10 rounded-full"
-                /> */}
+
                 <div className="flex-1">
                   <div className="relative">
                     <textarea
@@ -585,14 +582,9 @@ const RecipeDetail = () => {
               <div className="space-y-6">
                 {comments.map((comment) => (
                   <div key={comment._id} className="flex items-start space-x-4">
-                    {/* <img
-                      src={`http://localhost:5001/${comment.user.profilePic}`}
-                      alt={comment.user.name}
-                      className="w-10 h-10 rounded-full"
-                    /> */}
                     {comment.user.profilePic ? (
                       <img
-                        src={`http://localhost:5001/${comment.user.profilePic}`}
+                        src={`https://cooktogether.onrender.com/${comment.user.profilePic}`}
                         alt={comment.user.profilePic}
                         className="h-8 w-8 rounded-full object-cover border-2 border-red-600"
                       />

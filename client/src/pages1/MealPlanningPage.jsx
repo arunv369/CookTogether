@@ -47,10 +47,13 @@ const MealPlanningPage = () => {
   useEffect(() => {
     const fetchMealPlan = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/meal-plans", {
-          params: { weekStartDate: getWeekDates(currentWeek)[0] },
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://cooktogether.onrender.com/meal-plans",
+          {
+            params: { weekStartDate: getWeekDates(currentWeek)[0] },
+            withCredentials: true,
+          }
+        );
 
         const plan = res.data.plan || {};
         setWeekPlan(plan);
@@ -66,7 +69,7 @@ const MealPlanningPage = () => {
 
         if (recipeIds.length > 0) {
           const recipeRes = await axios.get(
-            "http://localhost:5001/recipes/bulk",
+            "https://cooktogether.onrender.com/recipes/bulk",
             {
               params: { ids: recipeIds.join(",") },
             }
@@ -136,7 +139,7 @@ const MealPlanningPage = () => {
   const saveMealPlan = async (updatedPlan) => {
     try {
       await axios.post(
-        "http://localhost:5001/meal-plans/save",
+        "https://cooktogether.onrender.com/meal-plans/save",
         {
           weekStartDate: getWeekDates(currentWeek)[0], // Sunday of current week
           plan: updatedPlan,
@@ -144,10 +147,13 @@ const MealPlanningPage = () => {
         { withCredentials: true }
       );
       // Refetch updated plan
-      const res = await axios.get("http://localhost:5001/meal-plans", {
-        params: { weekStartDate: getWeekDates(currentWeek)[0] },
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://cooktogether.onrender.com/meal-plans",
+        {
+          params: { weekStartDate: getWeekDates(currentWeek)[0] },
+          withCredentials: true,
+        }
+      );
       const plan = res.data.plan || {};
       setWeekPlan(plan);
     } catch (error) {
@@ -253,14 +259,14 @@ const MealPlanningPage = () => {
   const handleShare = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:5001/meal-plans/share",
+        "https://cooktogether.onrender.com/meal-plans/share",
         {
           weekStartDate: getWeekDates(currentWeek)[0],
         },
         { withCredentials: true }
       );
 
-      const shareUrl = `http://localhost:5173/shared/${data.shareId}`;
+      const shareUrl = `https://cooktogether-b20.netlify.app/shared/${data.shareId}`;
       setShareUrl(shareUrl);
       setShowShareModal(true);
     } catch (err) {
@@ -671,7 +677,7 @@ const MealPlanningPage = () => {
                     className="flex items-center p-4 border rounded-lg hover:bg-gray-50"
                   >
                     <img
-                      src={`http://localhost:5001/${recipe.image}`}
+                      src={`https://cooktogether.onrender.com/${recipe.image}`}
                       alt="Recipe"
                       className="w-16 h-16 object-cover rounded"
                     />

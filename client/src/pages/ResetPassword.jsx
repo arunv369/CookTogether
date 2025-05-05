@@ -12,9 +12,12 @@ function ResetPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5001/auth/reset-password/${token}`, {
-        password,
-      });
+      await axios.post(
+        `https://cooktogether.onrender.com/auth/reset-password/${token}`,
+        {
+          password,
+        }
+      );
       toast.success("Password reset successful. You can now login.");
       setPassword("");
       setTimeout(() => {

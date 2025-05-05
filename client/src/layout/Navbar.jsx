@@ -72,7 +72,7 @@ const Navbar = () => {
             <Link to="/profile" className="flex items-center">
               {profilePic ? (
                 <img
-                  src={`http://localhost:5001/${profilePic}`}
+                  src={`https://cooktogether.onrender.com/${profilePic}`}
                   alt={name}
                   className="h-8 w-8 rounded-full object-cover border-2 border-red-600"
                 />

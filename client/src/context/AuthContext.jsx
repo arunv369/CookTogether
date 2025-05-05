@@ -35,9 +35,12 @@ export const AuthProvider = ({ children }) => {
 
     const checkAuth = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/auth/verify-token", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://cooktogether.onrender.com/auth/verify-token",
+          {
+            withCredentials: true,
+          }
+        );
         setUser(res.data.user);
       } catch (err) {
         setUser(null);
@@ -51,7 +54,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/recipes");
+        const res = await axios.get(
+          "https://cooktogether.onrender.com/recipes"
+        );
         setRecipes(res.data);
         console.log(res.data);
       } catch (err) {
@@ -63,7 +68,7 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (name, email, password) => {
     const res = await axios.post(
-      "http://localhost:5001/auth/signup",
+      "https://cooktogether.onrender.com/auth/signup",
       { name, email, password },
       { withCredentials: true }
     );
@@ -72,7 +77,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const res = await axios.post(
-      "http://localhost:5001/auth/login",
+      "https://cooktogether.onrender.com/auth/login",
       { email, password },
       { withCredentials: true }
     );
@@ -81,7 +86,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await axios.get("http://localhost:5001/auth/logout", {
+    await axios.get("https://cooktogether.onrender.com/auth/logout", {
       withCredentials: true,
     });
     toast.success("Logout successful");

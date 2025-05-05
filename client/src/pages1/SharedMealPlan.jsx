@@ -13,7 +13,7 @@ const SharedMealPlan = () => {
     const fetchMealPlan = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5001/meal-plans/shared/${shareId}`
+          `https://cooktogether.onrender.com/meal-plans/shared/${shareId}`
         );
         setMealPlan(data);
       } catch (error) {

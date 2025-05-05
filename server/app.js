@@ -17,7 +17,7 @@ app.use("/userimage", express.static(path.join(__dirname, "userimage")));
 
 app.use(
   cors({
-    origin: "https://cooktogether-b20.netlify.app/login",
+    origin: "https://cooktogether-b20.netlify.app",
     credentials: true,
   })
 );

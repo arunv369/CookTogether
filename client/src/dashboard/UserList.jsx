@@ -14,7 +14,7 @@ const UserList = () => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/users", {
+        const res = await axios.get("https://cooktogether.onrender.com/users", {
           withCredentials: true,
         });
         setUsers(res.data);
@@ -33,9 +33,12 @@ const UserList = () => {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5001/users/${selectedUserId}`, {
-        withCredentials: true,
-      });
+      await axios.delete(
+        `https://cooktogether.onrender.com/users/${selectedUserId}`,
+        {
+          withCredentials: true,
+        }
+      );
 
       setUsers(users.filter((user) => user._id !== selectedUserId));
       toast.success("User deleted successfully");
@@ -65,7 +68,7 @@ const UserList = () => {
           >
             {user.profilePic ? (
               <img
-                src={`http://localhost:5001/${user.profilePic}`}
+                src={`https://cooktogether.onrender.com/${user.profilePic}`}
                 alt={user.name}
                 className="h-8 w-8 rounded-full object-cover border-2 border-red-600"
               />

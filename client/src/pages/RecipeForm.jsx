@@ -55,7 +55,7 @@ const RecipeForm = () => {
       data.append("video", form.video);
       data.append("image", image);
 
-      await axios.post("http://localhost:5001/recipes", data, {
+      await axios.post("https://cooktogether.onrender.com/recipes", data, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       });
